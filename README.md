@@ -7,9 +7,14 @@ Authors are Joel Vaz and Mario Kodba
 
 Description:
 
--Make a Robust railwork traffic light control system based on a microcontroller ATMEGA328p#########################################
--Have two types of communication protocols synchronous and asynchronous############################################################
--Follow a testeability methodology and coding guidelines (For example philips healthcare)##########################################
--Microcontroller must have a test mode implemented#################################################################################
--Design and implement the laboratorial prototype using LEDS, sensors and microcontroller###########################################
--Design the PCB industrial prototype using EAGLE CAD###############################################################################
+-Make a Robust railwork traffic light control system based on a microcontroller ATMEGA328p
+
+-Have two types of communication protocols synchronous and asynchronous
+
+-Follow a testeability methodology and coding guidelines (For example philips healthcare)
+
+-Microcontroller must have a test mode implemented
+
+-Design and implement the laboratorial prototype using LEDS, sensors and microcontroller
+
+-Design the PCB industrial prototype using EAGLE CAD
