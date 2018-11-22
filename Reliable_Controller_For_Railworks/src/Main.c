@@ -14,10 +14,8 @@
 #define LED_HIGH PORTB |= _BV(LED_BIT)
 #define LED_LOW PORTB &= ~(_BV(LED_BIT))
 
-void main(void) __attribute__ ((noreturn));
-
-void main(void) {
-/* this is sparta */
+int main(void) {
+/* this is Sparta */
 	uint8_t led_state = 1;
 	DDRB |= (1 << LED_BIT);
 
@@ -30,4 +28,5 @@ void main(void) {
 		led_state = !led_state;
 		_delay_ms(1000);
 	}
+	return 0;
 }

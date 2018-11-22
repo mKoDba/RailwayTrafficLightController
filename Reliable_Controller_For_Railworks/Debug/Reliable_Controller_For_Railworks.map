@@ -467,9 +467,9 @@ END GROUP
  .stab          0x0000000000000720      0x3d8 ./src/Main.o
                                         0x594 (size before relaxing)
 
-.stabstr        0x0000000000000000      0xd4e
+.stabstr        0x0000000000000000      0xd4d
  *(.stabstr)
- .stabstr       0x0000000000000000      0xd4e ./src/EEPROM_Test.o
+ .stabstr       0x0000000000000000      0xd4d ./src/EEPROM_Test.o
 
 .stab.excl
  *(.stab.excl)
