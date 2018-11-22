@@ -1,26 +1,32 @@
-#include "configGlobal.h"
+/*********************************************************************************
+ *                        Hello World Led blink                                  *
+ *                                                                               *
+ *                                                                               *
+ *                                                                               *
+ ********************************************************************************/
+
+#include <inttypes.h>
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include <util/delay.h>
 
-#define LED PD4 
+#define LED_BIT PB5
+#define LED_HIGH PORTB |= _BV(LED_BIT)
+#define LED_LOW PORTB &= ~(_BV(LED_BIT))
 
-int main()
-{
-	 uint8_t timerOverflowCount=0;	
-	 DDRD=0xff;         //configure PORTD as output	
-	 TCNT0=0x00;
-	 TCCR0 = (1<<CS00) | (1<<CS02);
-	 
-	for(;;)
-	{			
-		 while ((TIFR & 0x01) == 0); 
-		  TCNT0 = 0x00;
-		  TIFR=0x01; //clear timer1 overflow flag		              
-		 timerOverflowCount++;		 
-		 if (timerOverflowCount>=6)
-		 {
-			 PORTD ^= (0x01 << LED);			 
-			 timerOverflowCount=0;
-		 } 		 
-	}	
+void main(void) __attribute__ ((noreturn));
+
+void main(void) {
+	uint8_t led_state = 1;
+	DDRB |= (1 << LED_BIT);
+
+	while (1) {
+		if (led_state)
+			LED_HIGH;
+		else
+			LED_LOW;
+
+		led_state = !led_state;
+		_delay_ms(1000);
+	}
 }

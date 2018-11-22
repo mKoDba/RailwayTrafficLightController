@@ -1,10 +1,11 @@
-/*
- * eeprom_test.c
- *
- *  Created on: 20. stu 2018.
- *      Author: Mario
- */
+/*********************************************************************************
+ *                        Memory Test for EEPROM                                 *
+ *                                                                               *
+ *                                                                               *
+ *                                                                               *
+ ********************************************************************************/
 
+#include <stdlib.h>
 #include <avr/eeprom.h>
 #include <avr/io.h>
 #include <util/delay.h>
@@ -16,9 +17,9 @@ void error(){
 	exit(1);
 }
 
-inline void pattern_test(uint16_t pattern) {
+void pattern_test(uint16_t pattern) {
 
-	volatile uint16_t* ptr = 0;
+	uint16_t* ptr = 0;
 	//using 16bits or 2bytes
 	for(ptr = (uint16_t*)0x0000; ptr <= (uint16_t*)(EEPROM_KB*512); ptr += 2){
 		eeprom_busy_wait();
