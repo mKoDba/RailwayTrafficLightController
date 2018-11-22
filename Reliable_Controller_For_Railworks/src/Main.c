@@ -17,6 +17,7 @@
 void main(void) __attribute__ ((noreturn));
 
 void main(void) {
+/* this is sparta */
 	uint8_t led_state = 1;
 	DDRB |= (1 << LED_BIT);
 
