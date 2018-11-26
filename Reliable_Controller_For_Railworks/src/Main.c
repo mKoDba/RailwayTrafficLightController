@@ -1,23 +1,22 @@
 /*********************************************************************************
- *                        Hello World Led blink                                  *
+ *                                                                               *
+ *               Reliable Light System Controller For Train Line                 *
  *                                                                               *
  *                                                                               *
+ *               Code guide: NASA C style guide 1994                             *
+ *                                                                               *
+ *               Authors: Joel Matos Vaz (joelmatosvaz@gmail.com)                *
+ *                        Mario Kodba (Mario's email (here)                      *
+ *               Institution: @Faculdade de Engenharia Universidade do Porto     *
  *                                                                               *
  ********************************************************************************/
 
-#include <inttypes.h>
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include <util/delay.h>
-
-#define LED_BIT PB5
-#define LED_HIGH PORTB |= _BV(LED_BIT)
-#define LED_LOW PORTB &= ~(_BV(LED_BIT))
+#include"Config.h" /*Configuration file with the needed includes and I/O ports */
 
 int main(void) {
-/* this is Sparta */
+
 	uint8_t led_state = 1;
-	DDRB |= (1 << LED_BIT);
+	DDRB = DDRB | (1<<LED_BIT);
 
 	while (1) {
 		if (led_state)
@@ -26,7 +25,7 @@ int main(void) {
 			LED_LOW;
 
 		led_state = !led_state;
-		_delay_ms(1000);
+		_delay_ms(50000);
 	}
 	return 0;
 }

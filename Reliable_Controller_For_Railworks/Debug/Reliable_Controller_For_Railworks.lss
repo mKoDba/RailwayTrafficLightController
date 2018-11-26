@@ -389,7 +389,7 @@ int main(void) {
  262:	de bf       	out	0x3e, r29	; 62
  264:	0f be       	out	0x3f, r0	; 63
  266:	cd bf       	out	0x3d, r28	; 61
-/* this is Sparta */
+
 	uint8_t led_state = 1;
  268:	81 e0       	ldi	r24, 0x01	; 1
  26a:	89 83       	std	Y+1, r24	; 0x01

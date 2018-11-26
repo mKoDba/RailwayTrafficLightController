@@ -1,7 +1,13 @@
 /*********************************************************************************
- *                        Memory Test for EEPROM                                 *
+ *                                                                               *
+ *               EEPROM Memory Testing for ATMEGA328p                            *
  *                                                                               *
  *                                                                               *
+ *               Code guide: NASA C style guide 1994                             *
+ *                                                                               *
+ *               Authors: Joel Matos Vaz (joelmatosvaz@gmail.com)                *
+ *                        Mario Kodba (Mario's email (here)                      *
+ *               Institution: @Faculdade de Engenharia Universidade do Porto     *
  *                                                                               *
  ********************************************************************************/
 
