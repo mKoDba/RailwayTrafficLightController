@@ -11,10 +11,7 @@
  *                                                                               *
  ********************************************************************************/
 
-#include <stdlib.h>
-#include <avr/eeprom.h>
-#include <avr/io.h>
-#include <util/delay.h>
+#include"Config.h"
 
 #define EEPROM_KB 1			//depending on mcu used
 #define WAIT 100

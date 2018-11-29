@@ -11,7 +11,17 @@
  *                                                                               *
  ********************************************************************************/
 
-#include"Config.h" /*Configuration file with the needed includes and I/O ports */
+/*
+*
+*	Algorithm: 1 ) Computer main station sends data with slave id
+*			   2 ) Micro controller receives the commands and evaluates if id is correct
+*			   3 ) Sends the data to the memory I2C with time stamp
+*			   4 ) Sends the data to the corresponding output LEDs
+*			   5 ) If test mode enable begins testing the memory
+*
+*/
+
+#include"Config.h" /*Configuration file with the needed includes and I/O ports set*/
 
 int main(void) {
 
