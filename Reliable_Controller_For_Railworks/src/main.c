@@ -24,7 +24,7 @@
 #include "serial_comms.h"
 
 #define DEBUG		/* defined for debugging purposes */
-//#define EXT_MEM address	---------- address of ext_memory has to be set here
+#define EXT_MEM 100	/* address of external memory has to be set here */
 
 int main(void) {
 
@@ -35,38 +35,31 @@ int main(void) {
     char* input;			// added pointer?
 
     while(1) {
+		//Tests the serial communication
         puts("Hello world!");
         input = getchar();
         printf("You wrote %c\n", input);        
 
-/* this part writes to eeprom memory and reads it back, checking for errors */
-#ifdef DEBUG
-	usart_init();
-	printf_init();
-	printf("\n\nHello\n");
-#endif
+		uint8_t ret;
+		ret = i2c_start(EXT_MEM);
+		/* check if failed to issue start condition, could be device not found*/
+		if(ret){
+			i2c_stop();
+			/* print on terminal return value */
+			#ifdef DEBUG
+				printf("%d", ret);
+			#endif
+		}
 
-	uint8_t ret;
-	ret = i2c_start(EXT_MEM);
-	/* check if failed to issue start condition, could be device not found*/
-	if(ret){
-		i2c_stop();
-/* print on terminal return value */
-#ifdef DEBUG
-		printf("%d", ret);
-#endif
-	}
-
-	else {
-		i2c_write(0x05);	/* write address = 0x05 */
-		i2c_write(0x75);	/* write data to address 0x05 */
-		ret = i2c_read_nack(); /* read one byte from address */
-		i2c_stop();
-#ifdef DEBUG
-		printf("%d", ret);
-#endif
-	}
-
-    }
+		else {
+			i2c_write(0x05);	/* write address = 0x05 */
+			i2c_write(0x75);	/* write data to address 0x05 */
+			ret = i2c_read_nack(); /* read one byte from address */
+			i2c_stop();
+			#ifdef DEBUG
+				printf("%d", ret);
+			#endif
+		}
+    } //End While(1)
 	return 0; 
 }

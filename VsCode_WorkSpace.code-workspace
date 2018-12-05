@@ -14,6 +14,11 @@
 			"PATH": "/home/sobaca/.platformio/penv/bin:/home/sobaca/.platformio/penv:/home/sobaca/esp/xtensa-esp32-elf/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games",
 			"PLATFORMIO_CALLER": "vscode"
 		},
-		"git.ignoreLimitWarning": true
+		"git.ignoreLimitWarning": true,
+		"files.associations": {
+			"string.h": "c",
+			"twi.h": "c",
+			"io.h": "c"
+		}
 	}
 }
