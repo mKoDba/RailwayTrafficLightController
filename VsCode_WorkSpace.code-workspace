@@ -3,11 +3,15 @@
 		{
 			"path": "Reliable_Controller_For_Railworks",
 			"name": "Reliable_Controller_For_Railworks"
+		},
+		{
+			"path": "/home/sobaca/ESP32_WiFi",
+			"name": "ESP32_WiFi"
 		}
 	],
 	"settings": {
 		"terminal.integrated.env.linux": {
-			"PATH": "/home/sobaca/.platformio/penv/bin:/home/sobaca/.platformio/penv:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games",
+			"PATH": "/home/sobaca/.platformio/penv/bin:/home/sobaca/.platformio/penv:/home/sobaca/esp/xtensa-esp32-elf/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games",
 			"PLATFORMIO_CALLER": "vscode"
 		},
 		"git.ignoreLimitWarning": true
