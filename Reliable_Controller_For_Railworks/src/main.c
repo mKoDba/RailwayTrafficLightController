@@ -20,8 +20,9 @@
 *			   5 ) If test mode enable begins testing the memory
 */
 
-#include"config.h" /*Configuration file with the needed includes and I/O ports set*/
-#include "serial_comms.h"
+#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/config.h" /*Configuration file with the needed includes and I/O ports set*/
+#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/serial_comms.h"
+#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/i2c_comms.h"
 
 #define DEBUG		/* defined for debugging purposes */
 #define EXT_MEM 100	/* address of external memory has to be set here */

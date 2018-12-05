@@ -18,7 +18,8 @@
 		"files.associations": {
 			"string.h": "c",
 			"twi.h": "c",
-			"io.h": "c"
+			"io.h": "c",
+			"config.h": "c"
 		}
 	}
 }
