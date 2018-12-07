@@ -21,3 +21,16 @@ Industrial EagleCAD prototype with AC power and converters for real world usage
 Do the memory testng and communication testing code
 	Joel Vaz 20 of December
 
+
+	MESSAGE CODE:
+
+	ID - 2 bits 
+	SLAVE ID - 01
+
+	MESSAGE 4 bits
+	Everything else means off
+	In case of lack of message RED ON and green ON
+	RED ON - 0000
+	GREEN ON - 1111
+	EMERGENCE - 0011 (RED AND GREEN ON)
+
