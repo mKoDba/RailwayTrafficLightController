@@ -41,26 +41,26 @@ int main(void) {
         input = getchar();
         printf("You wrote %c\n", input);        
 
-		uint8_t ret;
-		ret = i2c_start(EXT_MEM);
+		//uint8_t ret;
+		//ret = i2c_start(EXT_MEM);
 		/* check if failed to issue start condition, could be device not found*/
-		if(ret){
-			i2c_stop();
+		//if(ret){
+		//	i2c_stop();
 			/* print on terminal return value */
-			#ifdef DEBUG
-				printf("%d", ret);
-			#endif
-		}
+		//	#ifdef DEBUG
+		//		printf("%d", ret);
+		//	#endif
+		//}
 
-		else {
-			i2c_write(0x05);	/* write address = 0x05 */
-			i2c_write(0x75);	/* write data to address 0x05 */
-			ret = i2c_read_nack(); /* read one byte from address */
-			i2c_stop();
-			#ifdef DEBUG
-				printf("%d", ret);
-			#endif
-		}
+//		else {
+//			i2c_write(0x05);	/* write address = 0x05 */
+//			i2c_write(0x75);	/* write data to address 0x05 */
+//			ret = i2c_read_nack(); /* read one byte from address */
+//			i2c_stop();
+//			#ifdef DEBUG
+//				printf("%d", ret);
+//			#endif
+//		}
     } //End While(1)
 	return 0; 
 }

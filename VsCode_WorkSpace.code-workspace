@@ -7,6 +7,10 @@
 		{
 			"path": "/home/sobaca/ESP32_WiFi",
 			"name": "ESP32_WiFi"
+		},
+		{
+			"path": "/home/sobaca/Documents/PlatformIO/Projects/181206-172847-arduino-blink",
+			"name": "181206-172847-arduino-blink"
 		}
 	],
 	"settings": {
@@ -19,7 +23,8 @@
 			"string.h": "c",
 			"twi.h": "c",
 			"io.h": "c",
-			"config.h": "c"
+			"config.h": "c",
+			"freertos.h": "c"
 		}
 	}
 }
