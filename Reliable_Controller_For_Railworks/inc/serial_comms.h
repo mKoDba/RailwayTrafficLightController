@@ -3,6 +3,8 @@
 
 void uart_putchar(char c, FILE *stream);
 char uart_getchar(FILE *stream);
+void uart_getstring(char * name);
+
 
 void uart_init(void);
 

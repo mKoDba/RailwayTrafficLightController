@@ -51,7 +51,18 @@ void uart_putchar(char c, FILE *stream) {
     UDR0 = c;
 }
 
-char uart_getchar(FILE *stream) {
+char uart_getchar(void) {
     loop_until_bit_is_set(UCSR0A, RXC0);
     return UDR0;
+}
+
+void uart_getstring(char * name) {
+ char c;
+ do {
+  c = uart_getchar();
+  if (c != 'p') {
+    *name++ = c;
+  }
+ } while (c != 'p');
+ *name = 0;
 }

@@ -33,13 +33,33 @@ int main(void) {
     stdout = &uart_output;
     stdin  = &uart_input;
                 
-    char* input;			// added pointer?
-
+    char input[7];			// added pointer?
+	
     while(1) {
 		//Tests the serial communication
-        puts("Hello world!");
-        input = getchar();
-        printf("You wrote %c\n", input);        
+		//if serial receive mode enabled do this code
+        puts("Receive Mode enabled! \n");
+        uart_getstring(input);
+		printf("ID = %c %c Message = ", input[0], input[1]);
+		for(int i = 0; i < 7; i++){
+        	printf("%c ", input[i]);    
+		}
+		printf("\n");
+		if(input[0] == '0' && input[1] == '1'){
+			printf("\nSou micro ondas e recebi mensagem: ");
+			printf("Slave id %c %c Message: ",input[0], input[1]);
+			for(int i = 0; i < 5; i++){
+				printf("%c ",input[i+2]);
+			}
+		printf("\n \n");
+		}
+		else{
+			printf("Incorrect slave id: ");
+			for(int i = 0; i < 2; i++){
+				printf("%c", input[i]);
+			}
+			printf("\n \n");
+		}
 
 		//uint8_t ret;
 		//ret = i2c_start(EXT_MEM);
