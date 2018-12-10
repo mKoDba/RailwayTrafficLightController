@@ -60,10 +60,14 @@ uint8_t i2c_start(uint8_t slave_address){
 		return 0;
 }
 
+//////////////////////////////////////////////////////////////////////////////////
+
 void i2c_stop(void){
 	/* send STOP condition */
 	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTO);
 }
+
+//////////////////////////////////////////////////////////////////////////////////
 
 /* Send one byte to I2C device */
 uint8_t i2c_write(uint8_t data){
@@ -81,6 +85,8 @@ uint8_t i2c_write(uint8_t data){
 		return 0;
 }
 
+//////////////////////////////////////////////////////////////////////////////////
+
 /* Read one byte from the I2C device, request more data from device */
 uint8_t i2c_read_ack(void){
 	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWEA);
@@ -89,6 +95,8 @@ uint8_t i2c_read_ack(void){
     return TWDR;
 }
 
+//////////////////////////////////////////////////////////////////////////////////
+
 /* Read one byte from the I2C device, read is followed by a stop condition */
 uint8_t i2c_read_nack(void){
 	TWCR = (1<<TWINT) | (1<<TWEN);
@@ -96,3 +104,5 @@ uint8_t i2c_read_nack(void){
 	
     return TWDR;
 }
+
+//////////////////////////////////////////////////////////////////////////////////

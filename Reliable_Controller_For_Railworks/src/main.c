@@ -23,6 +23,8 @@
 #include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/config.h" /*Configuration file with the needed includes and I/O ports set*/
 #include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/serial_comms.h"
 #include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/i2c_comms.h"
+#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/controller.h"
+
 
 #define DEBUG		/* defined for debugging purposes */
 #define EXT_MEM 100	/* address of external memory has to be set here */
@@ -48,7 +50,7 @@ int main(void) {
 		}
 		printf("\n");
 		if(input[0] == '0' && input[1] == '1'){
-			printf("\nSou micro ondas e recebi mensagem: ");
+			printf("\nSou micro com id 01 e recebi a mensagem: ");
 			printf("Slave id %c %c Message: ",input[0], input[1]);
 			for(int i = 0; i < 5; i++){
 				printf("%c ",input[i+2]);
@@ -64,6 +66,8 @@ int main(void) {
 		}
 		//SERIAL COMMUNICATION CODE ENDS HERE
 		/////////////////////////////////////////////////////////////////////////////////////////////////
+
+		//Controller Code
 
 		//I2C COMMUNICATION CODE STARTS HERE
 		uint8_t ret;

@@ -43,6 +43,8 @@ void uart_init(void) {
     UCSR0B = _BV(RXEN0) | _BV(TXEN0);   /* Enable RX and TX */    
 }
 
+//////////////////////////////////////////////////////////////////////////////////
+
 void uart_putchar(char c, FILE *stream) {
     if (c == '\n') {
         uart_putchar('\r', stream);
@@ -51,10 +53,14 @@ void uart_putchar(char c, FILE *stream) {
     UDR0 = c;
 }
 
+//////////////////////////////////////////////////////////////////////////////////
+
 char uart_getchar(void) {
     loop_until_bit_is_set(UCSR0A, RXC0);
     return UDR0;
 }
+
+//////////////////////////////////////////////////////////////////////////////////
 
 void uart_getstring(char * name) {
  char c;
@@ -66,3 +72,5 @@ void uart_getstring(char * name) {
  } while (c != 'p');
  *name = 0;
 }
+
+//////////////////////////////////////////////////////////////////////////////////
