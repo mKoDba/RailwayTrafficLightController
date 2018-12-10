@@ -33,7 +33,7 @@ int main(void) {
     stdout = &uart_output;
     stdin  = &uart_input;
                 
-    char input[7];			// added pointer?
+    char input[6];			// Serial communication array 2 bits ID and 4 bits message
 	
     while(1) {
 

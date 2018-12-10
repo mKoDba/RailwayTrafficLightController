@@ -9,8 +9,8 @@
 			"name": "ESP32_WiFi"
 		},
 		{
-			"path": "/home/sobaca/Documents/PlatformIO/Projects/181206-172847-arduino-blink",
-			"name": "181206-172847-arduino-blink"
+			"path": "/home/sobaca/Arduino_Uno_SerialComms",
+			"name": "Arduino_Uno_SerialComms"
 		}
 	],
 	"settings": {
