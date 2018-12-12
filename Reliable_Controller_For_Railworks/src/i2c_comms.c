@@ -23,18 +23,24 @@
 * 		  	  	Test the communication
 * 		  	   	Read the memory
 */
-
 #include <util/twi.h>
+#include "i2c_comms.h"
+#include "config.h"
 
-#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/config.h"
-#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/i2c_comms.h"
+#define F_SCL 100000UL  /* define SCL freq - 100kHz or 400kHz according to datasheet */
+#define PRESCALER 1
+#define TWBR_VAL ((((F_CPU / F_SCL) / PRESCALER) - 16 )/2)
+//#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/config.h"
+//#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/i2c_comms.h"
 
+void i2c_init(void){
+  TWSR = 0;
+  TWBR = (uint8_t)TWBR_VAL; /* set SCL to 100kHz - value is 0x48*/
+}
 
 uint8_t i2c_start(uint8_t slave_address){
 	/* reset TWI control register */
 	TWCR = 0;
-	/* set SCL to 100kHz - value is 0x48*/
-	TWBR = (uint8_t)TWBR_VAL;
 	/* send START signal */
 	TWCR = (1<<TWINT) | (1<<TWSTA) | (1<<TWEN);
 	/* wait for end of transmission */
@@ -42,7 +48,7 @@ uint8_t i2c_start(uint8_t slave_address){
 
 	/* check if the start condition was successfully transmitted,
 	 * if it's not, return 1*/
-	if((TWSR & 0xF8) != TW_START){
+	if(((TWSR & 0xF8) != TW_START) && ((TWSR & 0xF8) != TW_REP_START)){
 		return 1;
 	}
 
@@ -56,8 +62,7 @@ uint8_t i2c_start(uint8_t slave_address){
 	if (((TWSR & 0xF8) != TW_MT_SLA_ACK) && ((TWSR & 0xF8) != TW_MR_SLA_ACK)){
 		return 1;
 	}
-	else 
-		return 0;
+	return 0;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -65,6 +70,9 @@ uint8_t i2c_start(uint8_t slave_address){
 void i2c_stop(void){
 	/* send STOP condition */
 	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTO);
+
+	/* wait until stop condition is executed and bus released */
+	while(TWCR & (1<<TWSTO));
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -81,8 +89,47 @@ uint8_t i2c_write(uint8_t data){
 	if((TWSR & 0xF8) != TW_MT_DATA_ACK){
 		return 1;
 	}
-	else
-		return 0;
+	return 0;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+uint8_t i2c_rep_start(uint8_t slave_address){
+    return i2c_start(slave_address);
+}
+
+void i2c_start_wait(uint8_t slave_address){
+
+    while (1){
+    	TWCR = 0;
+	    /* send START condition */
+	    TWCR = (1<<TWINT) | (1<<TWSTA) | (1<<TWEN);
+
+    	/* wait until transmission completed */
+    	while(!(TWCR & (1<<TWINT)));
+
+    	/* check value of TWI Status Register, but mask prescaler bits */
+    	if ( ((TWSR & 0xF8) != TW_START) && ((TWSR & 0xF8) != TW_REP_START)) continue;
+
+    	/* send device address */
+    	TWDR = slave_address;
+    	TWCR = (1<<TWINT) | (1<<TWEN);
+
+    	/* wail until transmission completed */
+    	while(!(TWCR & (1<<TWINT)));
+
+    	/* check value of TWI Status Register, but mask prescaler bits */
+    	if (((TWSR & 0xF8) == TW_MT_SLA_NACK )||((TWSR & 0xF8) == TW_MR_DATA_NACK)){
+    	    /* device busy, send stop condition to terminate write operation */
+	        TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTO);
+
+	        /* wait until stop condition is executed and bus released */
+	        while(TWCR & (1<<TWSTO));
+
+    	    continue;
+    	}
+    	break;
+     }
 }
 
 //////////////////////////////////////////////////////////////////////////////////
