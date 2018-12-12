@@ -25,12 +25,8 @@
 * 		  TODO Create Code
 * 		  	   Test the communication
 */
-
-//#include "/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/config.h"
 #include "config.h"
 #include <util/setbaud.h>
-
-
 
 void uart_init(void) {
     UBRR0H = UBRRH_VALUE;
@@ -69,10 +65,10 @@ void uart_getstring(char * name) {
  char c;
  do {
   c = uart_getchar();
-  if (c != 'p') {
+  if (c != '\n') {
     *name++ = c;
   }
- } while (c != 'p');
+ } while (c != '\n');
  *name = 0;
 }
 

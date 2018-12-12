@@ -11,7 +11,7 @@
  *                                                                               *
  ********************************************************************************/
 
-#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/config.h"
+#include"config.h"
 
 #define EEPROM_KB 1			//depending on mcu used
 #define WAIT 100

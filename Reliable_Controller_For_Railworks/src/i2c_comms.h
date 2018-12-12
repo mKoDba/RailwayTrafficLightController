@@ -1,6 +1,4 @@
-//#include</home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/config.h>
 #include "config.h"
-
 
 void i2c_init(void);
 uint8_t i2c_start(uint8_t slave_address);

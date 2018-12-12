@@ -16,9 +16,6 @@
 *Emergence mode red and green both on and blinking
 *
 */
-
-//#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/config.h"
-//#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/controller.h"
 #include "config.h"
 #include "controller.h"
 

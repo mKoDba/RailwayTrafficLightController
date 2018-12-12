@@ -23,15 +23,13 @@
 * 		  	  	Test the communication
 * 		  	   	Read the memory
 */
-#include <util/twi.h>
-#include "i2c_comms.h"
 #include "config.h"
+#include "i2c_comms.h"
+#include <util/twi.h>
 
 #define F_SCL 100000UL  /* define SCL freq - 100kHz or 400kHz according to datasheet */
 #define PRESCALER 1
 #define TWBR_VAL ((((F_CPU / F_SCL) / PRESCALER) - 16 )/2)
-//#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/config.h"
-//#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/i2c_comms.h"
 
 void i2c_init(void){
   TWSR = 0;
