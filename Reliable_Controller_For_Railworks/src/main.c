@@ -6,7 +6,7 @@
  *               Code guide: NASA C style guide 1994                             *
  *                                                                               *
  *               Authors: Joel Matos Vaz (joelmatosvaz@gmail.com)                *
- *                        Mario Kodba (Mario's email (here)                      *
+ *                        Mario Kodba (up201802785@fe.up.pt)                      *
  *               Institution: @Faculdade de Engenharia Universidade do Porto     *
  *                                                                               *
  ********************************************************************************/
@@ -28,6 +28,7 @@ int main(void) {
 	uart_init();
 	set_output_signals();
 	controller_init();
+	i2c_init();
     stdout = &uart_output;
     stdin  = &uart_input;
                 
