@@ -31,37 +31,42 @@
 int main(void) {
 
 	uart_init();
+	set_output_signals();
+	controller_init();
     stdout = &uart_output;
     stdin  = &uart_input;
                 
-    char input[6]={};			// Serial communication array 2 bits ID and 4 bits message
+    char cmdServer[6]={};			// Serial communication array 2 bits ID and 4 bits message
     uint8_t ret;
 	uint8_t write_i2c_enable = 0;
+	uint8_t controller_enable = 0;
 
     while(1) {
 
 		//SERIAL COMMUNICATION CODE STARTS HERE
         puts("Receive Mode enabled! \n");
-        uart_getstring(input);
-		printf("ID = %c %c Message = ", input[0], input[1]);
+        uart_getstring(cmdServer);
+		printf("ID = %c %c Message = ", cmdServer[0], cmdServer[1]);
 		for(int i = 0; i < 6; i++){
-        	printf("%c ", input[i]);    
+        	printf("%c ", cmdServer[i]);    
 		}
 		printf("\n");
-		if(input[0] == '0' && input[1] == '1'){
+		if(cmdServer[0] == '0' && cmdServer[1] == '1'){
 			printf("\nI'm micro controller with id 01 and got Message: \n");
-			printf("Slave id %c %c Message: ",input[0], input[1]);
+			printf("Slave id %c %c Message: ",cmdServer[0], cmdServer[1]);
 			//write_i2c_enable = 1;
+			controller_enable = 1; //enables controller logic
 			for(int i = 0; i < 4; i++){
-				printf("%c ",input[i+2]);
+				printf("%c ",cmdServer[i+2]);
 			}
 		printf("\n \n");
 		}
 		else{
 			printf("Incorrect slave id: ");
 			//write_i2c_enable = 1;
+			controller_enable = 0; //Safety redundancy
 			for(int i = 0; i < 2; i++){
-				printf("%c", input[i]);
+				printf("%c", cmdServer[i]);
 			}
 			printf("\n \n");
 		}
@@ -125,7 +130,22 @@ int main(void) {
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 
 		//CONTROLLER CODE STARTS HERE
-
+		if(controller_enable == 1){
+			if(cmdServer[2] == 0 && cmdServer[3] == 0 && cmdServer[4] == 0 && cmdServer[5] == 0){
+				light_red_on();
+				light_green_off();
+				controller_enable = 0;
+			}
+			else if (cmdServer[2] == 1 && cmdServer[3] == 1 && cmdServer[4] == 1 && cmdServer[5] == 1){
+				light_red_off();
+				light_green_on();
+				controller_enable = 0;
+			}
+			else
+				light_red_on();
+				light_green_off();
+				controller_enable = 0;
+		}
 		//CONTROLLER CODE ENDS HERE
 		/////////////////////////////////////////////////////////////////////////////////////////////////
     } //End While(1)
