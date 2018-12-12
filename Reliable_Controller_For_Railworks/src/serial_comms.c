@@ -27,8 +27,10 @@
 */
 
 //#include "/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/config.h"
-#include <util/setbaud.h>
 #include "config.h"
+#include <util/setbaud.h>
+
+
 
 void uart_init(void) {
     UBRR0H = UBRRH_VALUE;

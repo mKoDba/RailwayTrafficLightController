@@ -27,7 +27,7 @@
 #include "config.h"
 #include "serial_comms.h"
 #include "i2c_comms.h"
-//#include "controller.h"
+#include "controller.h"
 
 
 #define DEBUG		/* defined for debugging purposes */
@@ -42,6 +42,7 @@ int main(void) {
     stdin  = &uart_input;
                 
     char input[6];			// Serial communication array 2 bits ID and 4 bits message
+    uint8_t ret;
 	
     while(1) {
 
