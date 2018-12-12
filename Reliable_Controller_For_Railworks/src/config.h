@@ -4,6 +4,10 @@
 #include <util/delay.h>
 #include <stdio.h>
 
+#define DEBUG		/* defined for debugging purposes */
+#define EXT_MEM 0xA0	/* address of external memory has to be set here */
+#define WRITE 0
+#define READ 1
 
 #ifndef F_CPU
 #define F_CPU 16000000UL
