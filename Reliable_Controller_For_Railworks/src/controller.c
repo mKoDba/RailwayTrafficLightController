@@ -17,8 +17,10 @@
 *
 */
 
-#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/config.h"
-#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/controller.h"
+//#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/config.h"
+//#include"/home/sobaca/CommsForTrainLight/Reliable_Controller_For_Railworks/inc/controller.h"
+#include "config.h"
+#include "controller.h"
 
 void set_output_signals(void){
     //function to set the output
