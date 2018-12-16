@@ -31,6 +31,8 @@ int main(void) {
 	i2c_init();
     stdout = &uart_output;
     stdin  = &uart_input;
+
+	int Debug1 = 1;
                 
     char cmdServer[6]={};			// Serial communication array 2 bits ID and 4 bits message
     uint8_t ret;
@@ -39,6 +41,13 @@ int main(void) {
 
     while(1) {
 
+		if(Debug1 == 1){
+			//Debug Code for Java serial reader
+			puts("Hello World! \n");
+			_delay_ms(1000);
+		}
+		
+		if(Debug1 == 0){
 		//SERIAL COMMUNICATION CODE STARTS HERE
         puts("Receive Mode enabled! \n");
         uart_getstring(cmdServer);
@@ -65,10 +74,10 @@ int main(void) {
 				printf("%c", cmdServer[i]);
 			}
 			printf("\n \n");
-		}
+		} 
 		//SERIAL COMMUNICATION CODE ENDS HERE
 		/////////////////////////////////////////////////////////////////////////////////////////////////
-
+		
 		//I2C COMMUNICATION CODE STARTS HERE
 		if(write_i2c_enable == 1){
 			ret = i2c_start(EXT_MEM+WRITE);
@@ -144,6 +153,7 @@ int main(void) {
 		}
 		//CONTROLLER CODE ENDS HERE
 		/////////////////////////////////////////////////////////////////////////////////////////////////
+		}//End if Debug == 0
     } //End While(1)
 	return 0; 
 }
