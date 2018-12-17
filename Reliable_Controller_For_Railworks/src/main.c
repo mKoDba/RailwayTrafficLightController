@@ -22,6 +22,10 @@
 #include "serial_comms.h"
 #include "i2c_comms.h"
 #include "controller.h"
+#define MEM_CAP 0xFF
+#define EXT_MEM 0xA0
+#define WRITE 0
+#define READ 1
 
 int main(void) {
 
@@ -35,8 +39,9 @@ int main(void) {
 	int Debug1 = 1;
                 
     char cmdServer[6]={};			// Serial communication array 2 bits ID and 4 bits message
-    uint8_t ret;
-	uint8_t write_i2c_enable = 0;
+    uint8_t i,val;
+    uint8_t addr[256];
+	uint8_t write_i2c_enable = 1;
 	uint8_t controller_enable = 0;
 
     while(1) {
@@ -80,76 +85,56 @@ int main(void) {
 		
 		//I2C COMMUNICATION CODE STARTS HERE
 		if(write_i2c_enable == 1){
-			ret = i2c_start(EXT_MEM+WRITE);
-			/* check if failed to issue start condition, could be device not found*/
-			if(ret){
-				/* print on terminal return value */
-				i2c_stop();
-				printf("There was an error with issuing start condition!!!");
+
+			//byte_write_eeprom(EXT_MEM, 0x00, cmdServer[0]);
+			//byte_write_eeprom(EXT_MEM, 0x01, cmdServer[1]);
+			//byte_write_eeprom(EXT_MEM, 0x50, 11);
+			//byte_write_eeprom(EXT_MEM, 0xF8, 11);
+
+			//prints whole eeprom memory with corresponding values written to addresses
+			read_eeprom(EXT_MEM, &addr[0]);
+			printf("ADDRESS --- VALUE STORED\n\n");
+			for(i=0;i<MEM_CAP+1;i++){
+				printf("%d --- %d\n", i, addr[i]);
+				write_i2c_enable = 0;
 			}
 
-			else {
-				uint8_t start_add = 0x05;
-				i2c_write(start_add);	/* write address = 0x05 */
-				i2c_write(0x75);		/* write data to address 0x05 */
-				i2c_stop();				/* release bus */
-
-				i2c_start_wait(EXT_MEM+WRITE);     /* set device address and write mode */
-				i2c_start(EXT_MEM+WRITE);
-				i2c_write(0x05);                   /* write address = 0x05 */
-				i2c_rep_start(EXT_MEM+READ);       /* set device address and read mode */
-				ret = i2c_read_nack();             /* read one byte followed by stop condition */
-				i2c_stop();
-
-				printf("The value read from EEPROM address (%d): %d\n\n", start_add, ret);
-
-				/* write 0x70,0x71,072,073 to eeprom address 0x00..0x03 (page write),
-			 	wait until the device is no longer busy from the previous write operation */
-				i2c_start_wait(EXT_MEM+WRITE);     // set device address and write mode
-				i2c_write(0x00);                        // write start address = 0
-				i2c_write(0x70);                        // write data to address 0
-				i2c_write(0x71);                        //    "    "   "    "    1
-				i2c_write(0x72);                        //    "    "   "    "    2
-				i2c_write(0x74);                        //    "    "   "    "    3
-				i2c_stop();                             // set stop conditon = release bus
-
-			 	/* write ok, read value back from eeprom address 0..3 (sequential read),
-			    	wait until the device is no longer busy from the previous write operation */
-				i2c_start_wait(EXT_MEM+WRITE);      /* set device address and write mode */
-				start_add = 0x00;
-				i2c_write(start_add);                   /* write address = 0 */
-				i2c_rep_start(EXT_MEM+READ);        	/* set device address and read mode */
-				ret = i2c_read_ack();                       					/* read one byte form address 0 */
-				printf("Value written to address (%d): %d\n", start_add, ret);
-				ret = i2c_read_ack();                       						 /*  "    "    "    "     "    1 */
-				printf("Value written to address (%d): %d\n", start_add+1, ret);
-				ret = i2c_read_ack();                      							 /* "    "    "    "     "    2 */
-				printf("Value written to address (%d): %d\n", start_add+2, ret);
-				ret = i2c_read_nack();                      						 /*  "    "    "    "     "    3 */
-				printf("Value written to address (%d): %d\n", start_add+3, ret);
-				i2c_stop();     
-				write_i2c_enable = 0;                         							 /* release bus */
-			}
 		}
 		//I2C COMMUNICATION CODE ENDS HERE
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 
 		//CONTROLLER CODE STARTS HERE
+		val = 0x00;
 		if(controller_enable == 1){
 			if(cmdServer[2] == 0 && cmdServer[3] == 0 && cmdServer[4] == 0 && cmdServer[5] == 0){
 				light_red_on();
+				byte_write_eeprom(EXT_MEM,val,'R');
 				light_green_off();
 				controller_enable = 0;
+				if(val<MEM_CAP){
+					val++;
+				}
+				else val=0x00;
 			}
 			else if (cmdServer[2] == 1 && cmdServer[3] == 1 && cmdServer[4] == 1 && cmdServer[5] == 1){
 				light_red_off();
 				light_green_on();
+				byte_write_eeprom(EXT_MEM,val,'G');
 				controller_enable = 0;
+				if(val<MEM_CAP){
+					val++;
+				}
+				else val=0x00;
 			}
 			else
 				light_red_on();
+				byte_write_eeprom(EXT_MEM,val,'R');
 				light_green_off();
 				controller_enable = 0;
+				if(val<MEM_CAP){
+					val++;
+				}
+				else val=0x00;
 		}
 		//CONTROLLER CODE ENDS HERE
 		/////////////////////////////////////////////////////////////////////////////////////////////////
