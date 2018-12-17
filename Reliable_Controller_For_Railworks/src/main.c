@@ -35,37 +35,30 @@ int main(void) {
 	i2c_init();
     stdout = &uart_output;
     stdin  = &uart_input;
-
-	int Debug1 = 1;
                 
-    char cmdServer[6]={};			// Serial communication array 2 bits ID and 4 bits message
-    uint8_t i,val;
-    uint8_t addr[256];
-	uint8_t write_i2c_enable = 1;
+    char cmdServer[6]={}; // Serial communication array 2 bits ID and 4 bits message
+
+	uint16_t totalCmd = 1;			
+    uint8_t i = 0;
+	uint8_t val = 0;
+    uint8_t addr[256] = {};
+	uint8_t write_i2c_enable = 0;
 	uint8_t controller_enable = 0;
 
     while(1) {
 
-		if(Debug1 == 1){
-			//Debug Code for Java serial reader
-			printf("Hello, ");
-			printf("World, ");
-			printf("ATMega328p \n");
-			_delay_ms(10000);
-		}
-		
-		if(Debug1 == 0){
 		//SERIAL COMMUNICATION CODE STARTS HERE
-        puts("Receive Mode enabled! \n");
+        printf("\nSlave id = 01 Command Number = %d Receive Mode enabled!\n", totalCmd);
         uart_getstring(cmdServer);
-		printf("ID = %c %c Message = ", cmdServer[0], cmdServer[1]);
+		printf("ID = %c %c - - - - - - - - - - Full Command = ", cmdServer[0], cmdServer[1], totalCmd);
+		totalCmd = totalCmd + 1;
 		for(int i = 0; i < 6; i++){
         	printf("%c ", cmdServer[i]);    
 		}
 		printf("\n");
 		if(cmdServer[0] == '0' && cmdServer[1] == '1'){
-			printf("\nI'm micro controller with id 01 and got Message: \n");
-			printf("Slave id %c %c Message: ",cmdServer[0], cmdServer[1]);
+			printf("\nMicro controller with id 01 Received: \n");
+			printf("Message: ",cmdServer[0], cmdServer[1]);
 			//write_i2c_enable = 1;
 			controller_enable = 1; //enables controller logic
 			for(int i = 0; i < 4; i++){
@@ -74,6 +67,7 @@ int main(void) {
 		printf("\n \n");
 		}
 		else{
+			printf("\n");
 			printf("Incorrect slave id: ");
 			//write_i2c_enable = 1;
 			controller_enable = 0; //Safety redundancy
@@ -108,39 +102,42 @@ int main(void) {
 		//CONTROLLER CODE STARTS HERE
 		val = 0x00;
 		if(controller_enable == 1){
-			if(cmdServer[2] == 0 && cmdServer[3] == 0 && cmdServer[4] == 0 && cmdServer[5] == 0){
+			if(cmdServer[2] == 48 && cmdServer[3] == 48 && cmdServer[4] == 48 && cmdServer[5] == 48){
 				light_red_on();
-				byte_write_eeprom(EXT_MEM,val,'R');
 				light_green_off();
+				printf("Red On\n");
+				//byte_write_eeprom(EXT_MEM,val,'R');
 				controller_enable = 0;
 				if(val<MEM_CAP){
 					val++;
 				}
 				else val=0x00;
 			}
-			else if (cmdServer[2] == 1 && cmdServer[3] == 1 && cmdServer[4] == 1 && cmdServer[5] == 1){
+			else if (cmdServer[2] == 49 && cmdServer[3] == 49 && cmdServer[4] == 49 && cmdServer[5] == 49){
 				light_red_off();
 				light_green_on();
-				byte_write_eeprom(EXT_MEM,val,'G');
+				printf("Green On\n");
+				//byte_write_eeprom(EXT_MEM,val,'G');
 				controller_enable = 0;
 				if(val<MEM_CAP){
 					val++;
 				}
 				else val=0x00;
 			}
-			else
-				light_red_on();
-				byte_write_eeprom(EXT_MEM,val,'R');
-				light_green_off();
+			else{
+				printf("Not Recognizable Command\n");
+				//byte_write_eeprom(EXT_MEM,val,'R');
 				controller_enable = 0;
 				if(val<MEM_CAP){
 					val++;
 				}
 				else val=0x00;
-		}
+			}//end else if
+
+		}//end control enable logic
+
 		//CONTROLLER CODE ENDS HERE
 		/////////////////////////////////////////////////////////////////////////////////////////////////
-		}//End if Debug == 0
     } //End While(1)
 	return 0; 
-}
+}//end Main
