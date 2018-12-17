@@ -58,7 +58,7 @@ int main(void) {
 		printf("\n");
 		if(cmdServer[0] == '0' && cmdServer[1] == '1'){
 			printf("\nMicro controller with id 01 Received: \n");
-			printf("Message: ",cmdServer[0], cmdServer[1]);
+			printf("Message: %c %c ",cmdServer[0], cmdServer[1]);
 			//write_i2c_enable = 1;
 			controller_enable = 1; //enables controller logic
 			for(int i = 0; i < 4; i++){
@@ -100,7 +100,7 @@ int main(void) {
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 
 		//CONTROLLER CODE STARTS HERE
-		val = 0x00;
+
 		if(controller_enable == 1){
 			if(cmdServer[2] == 48 && cmdServer[3] == 48 && cmdServer[4] == 48 && cmdServer[5] == 48){
 				light_red_on();
@@ -126,7 +126,7 @@ int main(void) {
 			}
 			else{
 				printf("Not Recognizable Command\n");
-				//byte_write_eeprom(EXT_MEM,val,'R');
+				//byte_write_eeprom(EXT_MEM,val,'E');
 				controller_enable = 0;
 				if(val<MEM_CAP){
 					val++;
