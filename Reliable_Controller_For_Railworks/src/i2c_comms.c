@@ -30,6 +30,10 @@
 #define F_SCL 100000UL  /* define SCL freq - 100kHz or 400kHz according to datasheet */
 #define PRESCALER 1
 #define TWBR_VAL ((((F_CPU / F_SCL) / PRESCALER) - 16 )/2)
+#define MEM_CAP 0xFF
+#define START_ADDRESS 0x00
+#define WRITE 0
+#define READ 1
 
 void i2c_init(void){
   TWSR = 0;
@@ -151,3 +155,25 @@ uint8_t i2c_read_nack(void){
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+
+
+//function that writes single byte value (val) to an eeprom address passed to function (eeprom_address)
+void byte_write_eeprom(uint8_t slave_address, uint8_t eeprom_address, uint8_t val){
+	i2c_start(slave_address+WRITE);
+	i2c_write(eeprom_address);
+	i2c_write(val);
+	i2c_stop();
+}
+// function that reads whole EEPROM byte at the time
+// and saves read values into array passed in function by pointer
+void read_eeprom(uint8_t slave_address, uint8_t *val){
+	uint8_t i;
+	i2c_start_wait(slave_address+WRITE);
+	i2c_write(START_ADDRESS);
+
+	i2c_rep_start(slave_address+READ);
+	for(i=0;i<MEM_CAP;i++){
+		val[i] = i2c_read_ack();
+	}
+	i2c_stop();
+}
