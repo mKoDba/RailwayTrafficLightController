@@ -22,6 +22,7 @@
 #include "serial_comms.h"
 #include "i2c_comms.h"
 #include "controller.h"
+#include <string.h>
 #define MEM_CAP 0xFF
 #define EXT_MEM 0xA0
 #define WRITE 0
@@ -46,7 +47,7 @@ int main(void) {
 	uint8_t controller_enable = 0;
 
     while(1) {
-
+    	memset(cmdServer,0,sizeof(cmdServer));
 		//SERIAL COMMUNICATION CODE STARTS HERE
         printf("\nSlave id = 01\nCommand Number = %d\nReceive Mode enabled!\n", totalCmd);
         uart_getstring(cmdServer);
