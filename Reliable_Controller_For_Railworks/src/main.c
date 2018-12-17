@@ -48,20 +48,20 @@ int main(void) {
     while(1) {
 
 		//SERIAL COMMUNICATION CODE STARTS HERE
-        printf("\nSlave id = 01 Command Number = %d Receive Mode enabled!\n", totalCmd);
+        printf("\nSlave id = 01\nCommand Number = %d\nReceive Mode enabled!\n", totalCmd);
         uart_getstring(cmdServer);
-		printf("ID = %c %c - - - - - - - - - - Full Command = ", cmdServer[0], cmdServer[1], totalCmd);
+		printf("ID = %c %c - - - - - - - - - - Full Command = ", cmdServer[0], cmdServer[1]);
 		totalCmd = totalCmd + 1;
-		for(int i = 0; i < 6; i++){
+		for(i = 0; i < 6; i++){
         	printf("%c ", cmdServer[i]);    
 		}
 		printf("\n");
 		if(cmdServer[0] == '0' && cmdServer[1] == '1'){
 			printf("\nMicro controller with id 01 Received: \n");
-			printf("Message: %c %c ",cmdServer[0], cmdServer[1]);
+			printf("Message: ");
 			//write_i2c_enable = 1;
 			controller_enable = 1; //enables controller logic
-			for(int i = 0; i < 4; i++){
+			for(i = 0; i < 4; i++){
 				printf("%c ",cmdServer[i+2]);
 			}
 		printf("\n \n");
@@ -71,7 +71,7 @@ int main(void) {
 			printf("Incorrect slave id: ");
 			//write_i2c_enable = 1;
 			controller_enable = 0; //Safety redundancy
-			for(int i = 0; i < 2; i++){
+			for(i = 0; i < 2; i++){
 				printf("%c", cmdServer[i]);
 			}
 			printf("\n \n");
@@ -138,6 +138,7 @@ int main(void) {
 
 		//CONTROLLER CODE ENDS HERE
 		/////////////////////////////////////////////////////////////////////////////////////////////////
+		printf("\n-------------------------------------------------\n");
     } //End While(1)
 	return 0; 
 }//end Main
