@@ -33,6 +33,7 @@ int main(void) {
     stdin  = &uart_input;
 
 	int Debug1 = 1;
+	int current = 5;
                 
     char cmdServer[6]={};			// Serial communication array 2 bits ID and 4 bits message
     uint8_t ret;
@@ -43,7 +44,8 @@ int main(void) {
 
 		if(Debug1 == 1){
 			//Debug Code for Java serial reader
-			puts("Hello World! \n");
+			printf("%d", current);
+			printf("\n");
 			_delay_ms(1000);
 		}
 		
