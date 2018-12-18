@@ -14173,7 +14173,7 @@ Source: http://catalog.tycoelectronics.com .. ENG_DS_1654001_1099_SR_0406.pdf</d
 <part name="S1" library="switch-dil" library_urn="urn:adsk.eagle:library:375" deviceset="DS01E" device="" package3d_urn="urn:adsk.eagle:package:27201/2"/>
 <part name="GND6" library="SBMI" deviceset="GND" device=""/>
 <part name="X1" library="special" library_urn="urn:adsk.eagle:library:367" deviceset="XTAL" device="" package3d_urn="urn:adsk.eagle:package:26649/1" value="16MHz"/>
-<part name="IC1" library="atmel" library_urn="urn:adsk.eagle:library:105" deviceset="AT24C*" device="P" package3d_urn="urn:adsk.eagle:package:4324/1" value="24LC1025"/>
+<part name="IC1" library="atmel" library_urn="urn:adsk.eagle:library:105" deviceset="AT24C*" device="P" package3d_urn="urn:adsk.eagle:package:4324/1" value="D1 (24LC1025)"/>
 <part name="GND5" library="SBMI" deviceset="GND" device=""/>
 <part name="GND7" library="SBMI" deviceset="GND" device=""/>
 <part name="P+3" library="SBMI" deviceset="VCC" device=""/>
@@ -14186,13 +14186,13 @@ Source: http://catalog.tycoelectronics.com .. ENG_DS_1654001_1099_SR_0406.pdf</d
 <part name="R4" library="eagle-ltspice" library_urn="urn:adsk.eagle:library:217" deviceset="R" device="" package3d_urn="urn:adsk.eagle:package:13300/1" value="120"/>
 <part name="P+6" library="SBMI" deviceset="VCC" device=""/>
 <part name="X2" library="con-phoenix-254" deviceset="MPT2" device=""/>
-<part name="D2" library="diode" library_urn="urn:adsk.eagle:library:210" deviceset="1N4148" device="DO35-7" package3d_urn="urn:adsk.eagle:package:43339/1"/>
-<part name="D3" library="diode" library_urn="urn:adsk.eagle:library:210" deviceset="1N4148" device="DO35-7" package3d_urn="urn:adsk.eagle:package:43339/1"/>
-<part name="D4" library="diode" library_urn="urn:adsk.eagle:library:210" deviceset="1N4148" device="DO35-7" package3d_urn="urn:adsk.eagle:package:43339/1"/>
-<part name="D1" library="diode" library_urn="urn:adsk.eagle:library:210" deviceset="1N4148" device="DO35-7" package3d_urn="urn:adsk.eagle:package:43339/1"/>
+<part name="V2" library="diode" library_urn="urn:adsk.eagle:library:210" deviceset="1N4148" device="DO35-7" package3d_urn="urn:adsk.eagle:package:43339/1"/>
+<part name="V3" library="diode" library_urn="urn:adsk.eagle:library:210" deviceset="1N4148" device="DO35-7" package3d_urn="urn:adsk.eagle:package:43339/1"/>
+<part name="V4" library="diode" library_urn="urn:adsk.eagle:library:210" deviceset="1N4148" device="DO35-7" package3d_urn="urn:adsk.eagle:package:43339/1"/>
+<part name="V1" library="diode" library_urn="urn:adsk.eagle:library:210" deviceset="1N4148" device="DO35-7" package3d_urn="urn:adsk.eagle:package:43339/1"/>
 <part name="T1" library="inductor-neosid" library_urn="urn:adsk.eagle:library:241" deviceset="SM-EP" device="7" package3d_urn="urn:adsk.eagle:package:14729/1" value="230V to 12V AC"/>
-<part name="IC2" library="linear" library_urn="urn:adsk.eagle:library:262" deviceset="78*" device="L" package3d_urn="urn:adsk.eagle:package:16416/2" technology="12"/>
-<part name="IC3" library="linear" library_urn="urn:adsk.eagle:library:262" deviceset="78*" device="L" package3d_urn="urn:adsk.eagle:package:16416/2" technology="05"/>
+<part name="IC2" library="linear" library_urn="urn:adsk.eagle:library:262" deviceset="78*" device="L" package3d_urn="urn:adsk.eagle:package:16416/2" technology="12" value="D2 (7812L)"/>
+<part name="IC3" library="linear" library_urn="urn:adsk.eagle:library:262" deviceset="78*" device="L" package3d_urn="urn:adsk.eagle:package:16416/2" technology="05" value="D3 (7805L)"/>
 <part name="C5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CPOL-EU" device="150CLZ-1010" package3d_urn="urn:adsk.eagle:package:23403/1" value="1500u/35V"/>
 <part name="GND9" library="SBMI" deviceset="GND" device=""/>
 <part name="P+7" library="SBMI" deviceset="VCC" device=""/>
@@ -14315,19 +14315,19 @@ Source: http://catalog.tycoelectronics.com .. ENG_DS_1654001_1099_SR_0406.pdf</d
 <attribute name="NAME" x="201.676" y="200.025" size="1.778" layer="95"/>
 <attribute name="VALUE" x="197.104" y="197.358" size="1.778" layer="96"/>
 </instance>
-<instance part="D2" gate="G$1" x="73.66" y="132.08" rot="R180">
+<instance part="V2" gate="G$1" x="73.66" y="132.08" rot="R180">
 <attribute name="NAME" x="71.12" y="131.5974" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="71.12" y="134.3914" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="D3" gate="G$1" x="73.66" y="124.46">
+<instance part="V3" gate="G$1" x="73.66" y="124.46">
 <attribute name="NAME" x="76.2" y="124.9426" size="1.778" layer="95"/>
 <attribute name="VALUE" x="76.2" y="122.1486" size="1.778" layer="96"/>
 </instance>
-<instance part="D4" gate="G$1" x="73.66" y="149.86">
+<instance part="V4" gate="G$1" x="73.66" y="149.86">
 <attribute name="NAME" x="76.2" y="150.3426" size="1.778" layer="95"/>
 <attribute name="VALUE" x="76.2" y="147.5486" size="1.778" layer="96"/>
 </instance>
-<instance part="D1" gate="G$1" x="73.66" y="142.24" rot="R180">
+<instance part="V1" gate="G$1" x="73.66" y="142.24" rot="R180">
 <attribute name="NAME" x="71.12" y="141.7574" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="71.12" y="144.5514" size="1.778" layer="96" rot="R180"/>
 </instance>
@@ -14497,10 +14497,10 @@ Source: http://catalog.tycoelectronics.com .. ENG_DS_1654001_1099_SR_0406.pdf</d
 <wire x1="158.75" y1="203.2" x2="156.21" y2="203.2" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="D1" gate="G$1" pin="A"/>
+<pinref part="V1" gate="G$1" pin="A"/>
 <wire x1="76.2" y1="142.24" x2="81.28" y2="142.24" width="0.1524" layer="91"/>
 <wire x1="81.28" y1="142.24" x2="81.28" y2="137.16" width="0.1524" layer="91"/>
-<pinref part="D2" gate="G$1" pin="A"/>
+<pinref part="V2" gate="G$1" pin="A"/>
 <wire x1="81.28" y1="137.16" x2="81.28" y2="132.08" width="0.1524" layer="91"/>
 <wire x1="81.28" y1="132.08" x2="76.2" y2="132.08" width="0.1524" layer="91"/>
 <wire x1="81.28" y1="137.16" x2="91.44" y2="137.16" width="0.1524" layer="91"/>
@@ -14641,9 +14641,9 @@ Source: http://catalog.tycoelectronics.com .. ENG_DS_1654001_1099_SR_0406.pdf</d
 <segment>
 <pinref part="T1" gate="G$1" pin="6"/>
 <wire x1="50.8" y1="144.78" x2="50.8" y2="149.86" width="0.1524" layer="91"/>
-<pinref part="D4" gate="G$1" pin="A"/>
+<pinref part="V4" gate="G$1" pin="A"/>
 <wire x1="50.8" y1="149.86" x2="60.96" y2="149.86" width="0.1524" layer="91"/>
-<pinref part="D1" gate="G$1" pin="C"/>
+<pinref part="V1" gate="G$1" pin="C"/>
 <wire x1="60.96" y1="149.86" x2="71.12" y2="149.86" width="0.1524" layer="91"/>
 <wire x1="71.12" y1="142.24" x2="60.96" y2="142.24" width="0.1524" layer="91"/>
 <wire x1="60.96" y1="142.24" x2="60.96" y2="149.86" width="0.1524" layer="91"/>
@@ -14655,8 +14655,8 @@ Source: http://catalog.tycoelectronics.com .. ENG_DS_1654001_1099_SR_0406.pdf</d
 <pinref part="T1" gate="G$1" pin="4"/>
 <wire x1="50.8" y1="129.54" x2="50.8" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="124.46" x2="60.96" y2="124.46" width="0.1524" layer="91"/>
-<pinref part="D3" gate="G$1" pin="A"/>
-<pinref part="D2" gate="G$1" pin="C"/>
+<pinref part="V3" gate="G$1" pin="A"/>
+<pinref part="V2" gate="G$1" pin="C"/>
 <wire x1="60.96" y1="124.46" x2="71.12" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="71.12" y1="132.08" x2="60.96" y2="132.08" width="0.1524" layer="91"/>
 <wire x1="60.96" y1="132.08" x2="60.96" y2="124.46" width="0.1524" layer="91"/>
@@ -14681,10 +14681,10 @@ Source: http://catalog.tycoelectronics.com .. ENG_DS_1654001_1099_SR_0406.pdf</d
 </net>
 <net name="N$16" class="0">
 <segment>
-<pinref part="D3" gate="G$1" pin="C"/>
+<pinref part="V3" gate="G$1" pin="C"/>
 <wire x1="76.2" y1="124.46" x2="104.14" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="104.14" y1="124.46" x2="104.14" y2="137.16" width="0.1524" layer="91"/>
-<pinref part="D4" gate="G$1" pin="C"/>
+<pinref part="V4" gate="G$1" pin="C"/>
 <wire x1="104.14" y1="137.16" x2="104.14" y2="149.86" width="0.1524" layer="91"/>
 <wire x1="104.14" y1="149.86" x2="76.2" y2="149.86" width="0.1524" layer="91"/>
 <wire x1="104.14" y1="137.16" x2="111.76" y2="137.16" width="0.1524" layer="91"/>
