@@ -7,9 +7,8 @@ void wdt_initiate(void){
     //reset watch dog
     wdt_reset();
     //set up watch dog timer interrupt
-    WDTCSR = (1<<WDCE) | (1<<WDE);
+    WDTCSR = (1<<WDCE);
     //start watchdog timer with 4second prescaler
-    WDTCSR = (1<<WDIE) | (1<<WDE) | (1<<WDP3);
-    //enable global interrupts
+    WDTCSR = (1<<WDIE) | (1<<WDP2) | (1<<WDP0);    //enable global interrupts
     sei();
 }

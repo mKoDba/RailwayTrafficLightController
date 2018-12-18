@@ -14,7 +14,6 @@
 
 uint16_t EEMEM eptr_eeprom_code_hash = 8056U;
 
-
 uint16_t flash_test_calculate_xor(void) {
     uint16_t hash = 0;
 

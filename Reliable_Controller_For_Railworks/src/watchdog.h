@@ -10,5 +10,3 @@
 #define WDT0_2S 7
 #define WDT0_4S 8
 #define WDT0_8S 9
-
-
