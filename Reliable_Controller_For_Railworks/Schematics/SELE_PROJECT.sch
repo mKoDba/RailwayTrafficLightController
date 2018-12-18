@@ -14190,7 +14190,7 @@ Source: http://catalog.tycoelectronics.com .. ENG_DS_1654001_1099_SR_0406.pdf</d
 <part name="D3" library="diode" library_urn="urn:adsk.eagle:library:210" deviceset="1N4148" device="DO35-7" package3d_urn="urn:adsk.eagle:package:43339/1"/>
 <part name="D4" library="diode" library_urn="urn:adsk.eagle:library:210" deviceset="1N4148" device="DO35-7" package3d_urn="urn:adsk.eagle:package:43339/1"/>
 <part name="D1" library="diode" library_urn="urn:adsk.eagle:library:210" deviceset="1N4148" device="DO35-7" package3d_urn="urn:adsk.eagle:package:43339/1"/>
-<part name="TR1" library="inductor-neosid" library_urn="urn:adsk.eagle:library:241" deviceset="SM-EP" device="7" package3d_urn="urn:adsk.eagle:package:14729/1"/>
+<part name="T1" library="inductor-neosid" library_urn="urn:adsk.eagle:library:241" deviceset="SM-EP" device="7" package3d_urn="urn:adsk.eagle:package:14729/1" value="230V to 12V AC"/>
 <part name="IC2" library="linear" library_urn="urn:adsk.eagle:library:262" deviceset="78*" device="L" package3d_urn="urn:adsk.eagle:package:16416/2" technology="12"/>
 <part name="IC3" library="linear" library_urn="urn:adsk.eagle:library:262" deviceset="78*" device="L" package3d_urn="urn:adsk.eagle:package:16416/2" technology="05"/>
 <part name="C5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CPOL-EU" device="150CLZ-1010" package3d_urn="urn:adsk.eagle:package:23403/1" value="1500u/35V"/>
@@ -14331,9 +14331,9 @@ Source: http://catalog.tycoelectronics.com .. ENG_DS_1654001_1099_SR_0406.pdf</d
 <attribute name="NAME" x="71.12" y="141.7574" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="71.12" y="144.5514" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="TR1" gate="G$1" x="45.72" y="137.16">
+<instance part="T1" gate="G$1" x="45.72" y="137.16">
 <attribute name="NAME" x="43.18" y="146.558" size="1.778" layer="95"/>
-<attribute name="VALUE" x="43.18" y="126.492" size="1.778" layer="96"/>
+<attribute name="VALUE" x="33.02" y="126.492" size="1.778" layer="96"/>
 </instance>
 <instance part="IC2" gate="A1" x="134.62" y="137.16">
 <attribute name="NAME" x="127" y="142.875" size="1.778" layer="95"/>
@@ -14347,8 +14347,8 @@ Source: http://catalog.tycoelectronics.com .. ENG_DS_1654001_1099_SR_0406.pdf</d
 <attribute name="NAME" x="112.903" y="124.9426" size="1.778" layer="95"/>
 <attribute name="VALUE" x="100.203" y="119.8626" size="1.778" layer="96"/>
 </instance>
-<instance part="GND9" gate="1" x="173.99" y="104.14">
-<attribute name="VALUE" x="171.45" y="101.6" size="1.778" layer="96"/>
+<instance part="GND9" gate="1" x="201.93" y="104.14">
+<attribute name="VALUE" x="199.39" y="101.6" size="1.778" layer="96"/>
 </instance>
 <instance part="P+7" gate="VCC" x="199.39" y="153.67">
 <attribute name="VALUE" x="196.85" y="151.13" size="1.778" layer="96" rot="R90"/>
@@ -14516,12 +14516,12 @@ Source: http://catalog.tycoelectronics.com .. ENG_DS_1654001_1099_SR_0406.pdf</d
 <wire x1="134.62" y1="106.68" x2="134.62" y2="129.54" width="0.1524" layer="91"/>
 <pinref part="IC3" gate="A1" pin="GND"/>
 <wire x1="134.62" y1="106.68" x2="147.32" y2="106.68" width="0.1524" layer="91"/>
-<wire x1="147.32" y1="106.68" x2="173.99" y2="106.68" width="0.1524" layer="91"/>
-<wire x1="173.99" y1="106.68" x2="175.26" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="147.32" y1="106.68" x2="201.93" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="201.93" y1="106.68" x2="175.26" y2="106.68" width="0.1524" layer="91"/>
 <wire x1="175.26" y1="106.68" x2="175.26" y2="129.54" width="0.1524" layer="91"/>
 <junction x="134.62" y="106.68"/>
 <pinref part="GND9" gate="1" pin="GND"/>
-<junction x="173.99" y="106.68"/>
+<junction x="201.93" y="106.68"/>
 <pinref part="C7" gate="G$1" pin="2"/>
 <wire x1="121.92" y1="119.38" x2="121.92" y2="106.68" width="0.1524" layer="91"/>
 <junction x="121.92" y="106.68"/>
@@ -14639,7 +14639,7 @@ Source: http://catalog.tycoelectronics.com .. ENG_DS_1654001_1099_SR_0406.pdf</d
 </net>
 <net name="N$11" class="0">
 <segment>
-<pinref part="TR1" gate="G$1" pin="6"/>
+<pinref part="T1" gate="G$1" pin="6"/>
 <wire x1="50.8" y1="144.78" x2="50.8" y2="149.86" width="0.1524" layer="91"/>
 <pinref part="D4" gate="G$1" pin="A"/>
 <wire x1="50.8" y1="149.86" x2="60.96" y2="149.86" width="0.1524" layer="91"/>
@@ -14652,7 +14652,7 @@ Source: http://catalog.tycoelectronics.com .. ENG_DS_1654001_1099_SR_0406.pdf</d
 </net>
 <net name="N$12" class="0">
 <segment>
-<pinref part="TR1" gate="G$1" pin="4"/>
+<pinref part="T1" gate="G$1" pin="4"/>
 <wire x1="50.8" y1="129.54" x2="50.8" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="124.46" x2="60.96" y2="124.46" width="0.1524" layer="91"/>
 <pinref part="D3" gate="G$1" pin="A"/>
@@ -14665,7 +14665,7 @@ Source: http://catalog.tycoelectronics.com .. ENG_DS_1654001_1099_SR_0406.pdf</d
 </net>
 <net name="N$13" class="0">
 <segment>
-<pinref part="TR1" gate="G$1" pin="1"/>
+<pinref part="T1" gate="G$1" pin="1"/>
 <wire x1="40.64" y1="144.78" x2="20.32" y2="144.78" width="0.1524" layer="91"/>
 <pinref part="X4" gate="G$1" pin="AC1"/>
 <wire x1="20.32" y1="142.24" x2="20.32" y2="144.78" width="0.1524" layer="91"/>
@@ -14673,7 +14673,7 @@ Source: http://catalog.tycoelectronics.com .. ENG_DS_1654001_1099_SR_0406.pdf</d
 </net>
 <net name="N$14" class="0">
 <segment>
-<pinref part="TR1" gate="G$1" pin="3"/>
+<pinref part="T1" gate="G$1" pin="3"/>
 <wire x1="40.64" y1="129.54" x2="20.32" y2="129.54" width="0.1524" layer="91"/>
 <pinref part="X4" gate="G$1" pin="AC2"/>
 <wire x1="20.32" y1="132.08" x2="20.32" y2="129.54" width="0.1524" layer="91"/>
@@ -14714,7 +14714,7 @@ Source: http://catalog.tycoelectronics.com .. ENG_DS_1654001_1099_SR_0406.pdf</d
 <net name="N$17" class="0">
 <segment>
 <pinref part="X4" gate="G$1" pin="SH"/>
-<pinref part="TR1" gate="G$1" pin="2"/>
+<pinref part="T1" gate="G$1" pin="2"/>
 <wire x1="20.32" y1="137.16" x2="40.64" y2="137.16" width="0.1524" layer="91"/>
 </segment>
 </net>
