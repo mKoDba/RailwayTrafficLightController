@@ -22,6 +22,7 @@
 #include "serial_comms.h"
 #include "i2c_comms.h"
 #include "ram_test.h"
+#include "flash_test.h"
 #include "controller.h"
 #include <string.h>
 #define MEM_CAP 0xFF
@@ -41,6 +42,8 @@ int main(void) {
 
     ////////////////// MEMORY TESTING OPERATIONS ///////////
     printf("\nRAM memory test showed %d errors.\n", ram_test());
+    //if(flash_test()) printf("FLASH memory test detected error.");
+    //else printf("FLASH memory ok.");
     ////////////////////////////////////////////////////////
                 
     char cmdServer[6]={}; // Serial communication array 2 bits ID and 4 bits message

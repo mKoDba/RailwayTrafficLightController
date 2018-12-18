@@ -35,7 +35,7 @@ uint16_t ram_test(void) {
 	    if(test[i] != 0xAA) errors++;
 	    test[i] = currentByte;
 	  }
-	  free(test);
+	  //free(test);
 	  return errors;
 }
 /*
