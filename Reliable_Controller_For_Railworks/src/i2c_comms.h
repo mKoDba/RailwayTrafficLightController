@@ -12,3 +12,4 @@ uint8_t i2c_read_nack(void);
 
 void read_eeprom(uint8_t slave_address, uint8_t *val);
 void byte_write_eeprom(uint8_t slave_address, uint8_t eeprom_address, uint8_t val);
+uint8_t read_last_address(uint8_t slave_address);
