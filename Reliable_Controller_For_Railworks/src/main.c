@@ -37,21 +37,15 @@ int main(void) {
 	set_output_signals();
 	controller_init();
 	i2c_init();
+
     stdout = &uart_output;
     stdin  = &uart_input;
-
-    ////////////////// MEMORY TESTING OPERATIONS ///////////
-    printf("\nRAM memory test showed %d errors.\n", ram_test());
-    //if(flash_test()) printf("FLASH memory test detected error.");
-    //else printf("FLASH memory ok.");
-    ////////////////////////////////////////////////////////
                 
     char cmdServer[6]={}; // Serial communication array 2 bits ID and 4 bits message
 
 	uint16_t totalCmd = 1;			
     uint8_t i = 0;
     //byte_write_eeprom(EXT_MEM,0x00,0x01);
-
     uint8_t addr[256] = {};
 	char write_i2c_enable[1]={};
 	uint8_t controller_enable = 0;
@@ -60,8 +54,8 @@ int main(void) {
     	uint8_t lastaddr = read_last_address(EXT_MEM);
     	memset(cmdServer,0,sizeof(cmdServer));
 		//SERIAL COMMUNICATION CODE STARTS HERE
-        printf("\nSlave id = 01\nCommand Number = %d \nReceive Mode enabled!\n", totalCmd);
-        printf("mem address:%d\n",lastaddr);
+		printf("mem address:%d\n",lastaddr);
+        printf("Slave id = 01\nCommand Number = %d \nReceive Mode enabled!\n", totalCmd);
         uart_getstring(cmdServer);
 		printf("ID = %c %c - - - - - - - - - - Full Command = ", cmdServer[0], cmdServer[1]);
 		totalCmd = totalCmd + 1;
@@ -72,7 +66,6 @@ int main(void) {
 		if(cmdServer[0] == '0' && cmdServer[1] == '1'){
 			printf("\nMicro controller with id 01 Received: \n");
 			printf("Message: ");
-
 			controller_enable = 1; //enables controller logic
 			for(i = 0; i < 4; i++){
 				printf("%c ",cmdServer[i+2]);
@@ -82,8 +75,7 @@ int main(void) {
 		else{
 			printf("\n");
 			printf("Incorrect slave id: ");
-
-			controller_enable = 1; //Safety redundancy
+			controller_enable = 0; //Safety redundancy
 			for(i = 0; i < 2; i++){
 				printf("%c", cmdServer[i]);
 			}
@@ -93,9 +85,7 @@ int main(void) {
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////
-
 		//CONTROLLER CODE STARTS HERE
-
 		if(controller_enable == 1){
 			if(cmdServer[2] == 48 && cmdServer[3] == 48 && cmdServer[4] == 48 && cmdServer[5] == 48){
 				light_red_on();
@@ -119,6 +109,19 @@ int main(void) {
 				}
 				else lastaddr=0x01;
 			}
+			//Memory Testing mode
+			else if (cmdServer[2] == 48 && cmdServer[3] == 49 && cmdServer[4] == 48 && cmdServer[5] == 49){
+				////////////////// MEMORY TESTING ///////////
+				printf("Testing Mode\n");
+				//wdt_initiate();
+    			printf("RAM memory test showed %d errors.\n", ram_test());
+    			if(flash_test()) 
+					printf("FLASH memory test detected errors. \n");
+    			else 
+					printf("FLASH memory ok.");
+    			////////////////////////////////////////////////////////
+			}
+			//Unkown Command
 			else{
 				printf("Not Recognizable Command\n");
 				byte_write_eeprom(EXT_MEM,lastaddr,100);		//put value 100 when error detected, for easy detection
@@ -128,28 +131,28 @@ int main(void) {
 				}
 				else lastaddr=0x01;
 			}//end else if
-
 		}//end control enable logic
+		//CONTROLLER CODE ENDS HERE
+		/////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+		//EEPROM CONTROL CODE STARTS HERE
+		/////////////////////////////////////////////////////////////////////////////////////////////////
 		printf("Print EEPROM memory values? (0-No / 1-Yes): \n");
 		uart_getstring(write_i2c_enable);
 		printf("%c\n", write_i2c_enable[0]);
 		if(write_i2c_enable[0] == '1'){
-
 			//prints whole eeprom memory with corresponding values written to addresses
+			//wdt_initiate();
 			read_eeprom(EXT_MEM, &addr[0]);
 			printf("ADDRESS --- VALUE STORED\n\n");
 			for(i=0;i<MEM_CAP;i++){
 				printf("%d --- %d\n", i, addr[i]);
 			}
 			write_i2c_enable[0] = 0;
-
 		}
 		//uses address 0x00 of eeprom to save address value of last writing, in case of power off
 		byte_write_eeprom(EXT_MEM,0x00,lastaddr);
-
-		//CONTROLLER CODE ENDS HERE
+		//EEPROM CONTROL CODE ENDS HERE
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 		printf("\n-------------------------------------------------\n");
     } //End While(1)

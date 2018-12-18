@@ -18,5 +18,4 @@ Do the memory testng and communication testing code
 	In case of lack of message RED ON and green OFF
 	RED ON - 0000
 	GREEN ON - 1111
-	EMERGENCE - 0011 (RED BLINK?) 
-
+	Memory Testing Mode - 0101
