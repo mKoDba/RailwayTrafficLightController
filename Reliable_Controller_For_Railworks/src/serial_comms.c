@@ -25,7 +25,7 @@
 * 		  TODO Create Code
 * 		  	   Test the communication
 */
-#include "config.h"
+#include "../includes/config.h"
 #include <util/setbaud.h>
 
 void uart_init(void) {

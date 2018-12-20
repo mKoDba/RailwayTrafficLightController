@@ -18,41 +18,36 @@
 *			   4 ) Sends the data to the corresponding output LEDs
 *			   5 ) If test mode enable begins testing the memory
 */
-#include "config.h"
-#include "serial_comms.h"
-#include "i2c_comms.h"
-#include "ram_test.h"
-#include "flash_test.h"
-#include "controller.h"
-#include <string.h>
-#define MEM_CAP 0xFF
-#define EXT_MEM 0xA0
-#define WRITE 0
-#define READ 1
-
+#include "../includes/config.h"
+#include "../includes/serial_comms.h"
+#include "../includes/i2c_comms.h"
+#include "../includes/ram_test.h"
+#include "../includes/flash_test.h"
+#include "../includes/controller.h"
 
 int main(void) {
 
+	//initates the modules
 	uart_init();
 	set_output_signals();
 	controller_init();
 	i2c_init();
-
-    stdout = &uart_output;
-    stdin  = &uart_input;
                 
     char cmdServer[6]={}; // Serial communication array 2 bits ID and 4 bits message
+	char write_i2c_enable[1]={};
 
 	uint16_t totalCmd = 1;			
     uint8_t i = 0;
-    //byte_write_eeprom(EXT_MEM,0x00,0x01);
     uint8_t addr[256] = {};
-	char write_i2c_enable[1]={};
 	uint8_t controller_enable = 0;
+
+	stdout = &uart_output;
+    stdin  = &uart_input;
 
     while(1) {
     	uint8_t lastaddr = read_last_address(EXT_MEM);
     	memset(cmdServer,0,sizeof(cmdServer));
+		
 		//SERIAL COMMUNICATION CODE STARTS HERE
 		printf("mem address:%d\n",lastaddr);
         printf("Slave id = 01\nCommand Number = %d \nReceive Mode enabled!\n", totalCmd);
@@ -114,7 +109,8 @@ int main(void) {
 				////////////////// MEMORY TESTING ///////////
 				printf("Testing Mode\n");
 				//wdt_initiate();
-    			printf("RAM memory test showed %d errors.\n", ram_test());
+				uint8_t ram_errors = ram_test();
+    			printf("RAM memory test showed %d errors.\n", ram_errors);
     			if(flash_test()) 
 					printf("FLASH memory test detected errors. \n");
     			else 

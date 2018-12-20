@@ -23,8 +23,8 @@
 * 		  	  	Test the communication
 * 		  	   	Read the memory
 */
-#include "config.h"
-#include "i2c_comms.h"
+#include "../includes/config.h"
+#include "../includes/i2c_comms.h"
 #include <util/twi.h>
 
 #define F_SCL 100000UL  /* define SCL freq - 100kHz or 400kHz according to datasheet */

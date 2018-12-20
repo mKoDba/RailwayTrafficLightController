@@ -16,8 +16,8 @@
 *Emergence mode red and green both on and blinking
 *
 */
-#include "config.h"
-#include "controller.h"
+#include "../includes/config.h"
+#include "../includes/controller.h"
 
 void set_output_signals(void){
     DDRB |= ((1<<Red_light) | (1<<Green_light));

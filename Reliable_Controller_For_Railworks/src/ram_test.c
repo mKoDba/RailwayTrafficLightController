@@ -11,10 +11,10 @@
  *                                                                               *
  ********************************************************************************/
 
-#include"config.h"
+#include"../includes/config.h"
 #include <stdlib.h>
 
-#define RAM_BYTES 1260			// depending on mcu used
+#define RAM_BYTES 500 //1260			// depending on mcu used
 								// more than this means collision with stack memory
 
 //////////////////////////////////////////////////////////////////////////////////

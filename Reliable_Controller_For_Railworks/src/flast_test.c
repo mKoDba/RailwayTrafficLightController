@@ -5,7 +5,7 @@
  *      Author: Mario
  */
 
-#include "flash_test.h"
+#include "../includes/flash_test.h"
 #include <avr/io.h>
 #include <avr/pgmspace.h>
 #include <avr/eeprom.h>
@@ -27,6 +27,8 @@ uint16_t flash_test_calculate_xor(void) {
 uint8_t flash_test(void) {
     uint16_t hash = flash_test_calculate_xor();
     uint16_t true_hash = eeprom_read_word(&eptr_eeprom_code_hash);
-    if(hash == true_hash) return 0;
-    return 1;
+    if(hash == true_hash) 
+         return 0;
+    else
+        return 1;
 }
