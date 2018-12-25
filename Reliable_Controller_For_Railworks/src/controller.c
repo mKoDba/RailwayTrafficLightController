@@ -1,6 +1,6 @@
 /*********************************************************************************
  *                                                                               *
- *               EEPROM Memory Testing for ATMEGA328p                            *
+ *               Controller Functions                                            *
  *                                                                               *
  *                                                                               *
  *               Code guide: NASA C style guide 1994                             *

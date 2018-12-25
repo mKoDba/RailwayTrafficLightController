@@ -1,6 +1,6 @@
 /*********************************************************************************
  *                                                                               *
- *               Configuration File for Main Function                            *
+ *               I2C Communication                                               *
  *                                                                               *
  *                                                                               *
  *               Code guide: NASA C style guide 1994                             *
@@ -19,9 +19,9 @@
 * The communication will have all the commands sent from the computer (main station)
 * the associated times stamps and malfunctions found.
 *
-* 		  TODO
-* 		  	  	Test the communication
-* 		  	   	Read the memory
+* 		  
+* 		  	  
+* 		  	   
 */
 #include "../includes/config.h"
 #include "../includes/i2c_comms.h"

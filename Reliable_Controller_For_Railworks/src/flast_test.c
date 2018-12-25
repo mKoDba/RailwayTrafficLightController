@@ -1,8 +1,21 @@
+/*********************************************************************************
+ *                                                                               *
+ *               Flash Test                           *
+ *                                                                               *
+ *                                                                               *
+ *               Code guide: NASA C style guide 1994                             *
+ *                                                                               *
+ *               Authors: Joel Matos Vaz (joelmatosvaz@gmail.com)                *
+ *                        Mario Kodba (up201802785@fe.up.pt)                     *
+ *               Institution: @Faculdade de Engenharia Universidade do Porto     *
+ *                                                                               *
+ ********************************************************************************/
+
 /*
- * flast_test.c
+ * Flash Testing Code
  *
- *  Created on: 18. pro 2018.
- *      Author: Mario
+ *  
+ *      
  */
 
 #include "../includes/flash_test.h"

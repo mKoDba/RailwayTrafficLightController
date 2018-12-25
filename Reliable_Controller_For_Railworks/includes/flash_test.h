@@ -1,9 +1,6 @@
 /*
- * flash_test.h
- *
- *  Created on: 18. pro 2018.
- *      Author: Mario
- */
+*
+*/
 
 #ifndef SRC_FLASH_TEST_H_
 #define SRC_FLASH_TEST_H_

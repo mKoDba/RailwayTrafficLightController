@@ -1,6 +1,6 @@
 /*********************************************************************************
  *                                                                               *
- *               Configuration File for Main Function                            *
+ *               Serial Communication                                            *
  *                                                                               *
  *                                                                               *
  *               Code guide: NASA C style guide 1994                             *
@@ -19,12 +19,9 @@
 * The message needs the content to send and the address (ID) of the slave (receiver)
 * Also important to record the time stamp of the message
 *
-* Author: Joel Vaz @FEUP joelmatosvaz@gmail.com
-* 		  Mario Kodba @FEUP (add Mario's email)
-*
-* 		  TODO Create Code
-* 		  	   Test the communication
+* 
 */
+
 #include "../includes/config.h"
 #include <util/setbaud.h>
 

@@ -1,3 +1,16 @@
+/*********************************************************************************
+ *                                                                               *
+ *               Configuration File for Main Function                            *
+ *                                                                               *
+ *                                                                               *
+ *               Code guide: NASA C style guide 1994                             *
+ *                                                                               *
+ *               Authors: Joel Matos Vaz (joelmatosvaz@gmail.com)                *
+ *                        Mario Kodba (up201802785@fe.up.pt)                     *
+ *               Institution: @Faculdade de Engenharia Universidade do Porto     *
+ *                                                                               *
+ ********************************************************************************/
+
 #include <inttypes.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>

@@ -1,3 +1,7 @@
+/*
+*
+*/
+
 #include "config.h"
 
 void i2c_init(void);
