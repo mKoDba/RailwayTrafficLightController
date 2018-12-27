@@ -49,7 +49,7 @@ int main(void) {
     	memset(cmdServer,0,sizeof(cmdServer));
 		
 		//SERIAL COMMUNICATION CODE STARTS HERE
-		printf("mem address:%d\n",lastaddr);
+		printf("Mem address:%d\n",lastaddr);
         printf("Slave id = 01\nCommand Number = %d \nReceive Mode enabled!\n", totalCmd);
         uart_getstring(cmdServer);
 		printf("ID = %c %c - - - - - - - - - - Full Command = ", cmdServer[0], cmdServer[1]);
@@ -117,6 +117,23 @@ int main(void) {
 					printf("FLASH memory ok.");
     			////////////////////////////////////////////////////////
 			}
+			//Print EEPROM LOG
+			else if (cmdServer[2] == 48 && cmdServer[3] == 48 && cmdServer[4] == 49 && cmdServer[5] == 49){
+				////////////////// EEPROM PRINT ///////////
+				printf("Print EEPROM memory values? (0-No / 1-Yes): \n");
+				uart_getstring(write_i2c_enable);
+				printf("%c\n", write_i2c_enable[0]);
+
+				if(write_i2c_enable[0] == '1'){
+					read_eeprom(EXT_MEM, &addr[0]); 
+					printf("ADDRESS --- VALUE STORED\n\n");
+
+					for(i=0;i<MEM_CAP;i++){
+						printf("%d --- %d\n", i, addr[i]);
+					}
+					write_i2c_enable[0] = 0;
+				}
+			}
 			//Unkown Command
 			else{
 				printf("Not Recognizable Command\n");
@@ -133,23 +150,11 @@ int main(void) {
 
 		//EEPROM CONTROL CODE STARTS HERE
 		/////////////////////////////////////////////////////////////////////////////////////////////////
-		printf("Print EEPROM memory values? (0-No / 1-Yes): \n");
-		uart_getstring(write_i2c_enable);
-		printf("%c\n", write_i2c_enable[0]);
-		if(write_i2c_enable[0] == '1'){
-			//prints whole eeprom memory with corresponding values written to addresses
-			//wdt_initiate();
-			read_eeprom(EXT_MEM, &addr[0]);
-			printf("ADDRESS --- VALUE STORED\n\n");
-			for(i=0;i<MEM_CAP;i++){
-				printf("%d --- %d\n", i, addr[i]);
-			}
-			write_i2c_enable[0] = 0;
-		}
 		//uses address 0x00 of eeprom to save address value of last writing, in case of power off
 		byte_write_eeprom(EXT_MEM,0x00,lastaddr);
 		//EEPROM CONTROL CODE ENDS HERE
 		/////////////////////////////////////////////////////////////////////////////////////////////////
+
 		printf("\n-------------------------------------------------\n");
     } //End While(1)
 	return 0; 
