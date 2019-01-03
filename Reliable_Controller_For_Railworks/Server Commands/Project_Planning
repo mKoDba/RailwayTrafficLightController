@@ -1,16 +1,4 @@
-Server Commands and TODO
-
-TODO:
-
-
-EEPROM internal and external memory test
-flash memory testing 
-RAM testing
-Change serial communication to use 9 bits style based on standard
-Save time stamps in the external EEPROM 
-Report
-PCB schematic 
-Industrial schematic
+Server Commands
 
 	MESSAGE CODE FROM SERVER:
 
@@ -21,4 +9,5 @@ Industrial schematic
 	In case of lack of message RED ON and green OFF
 	RED ON - 0000
 	GREEN ON - 1111
+	Print Log - 0011
 	Memory Testing Mode - 0101
