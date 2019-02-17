@@ -1,7 +1,7 @@
 # Railway Traffic Light Controller
 Railway Traffic Light Controller Project
 
-This is a faculty project for the fall semester of year 2018/2019 done at FEUP (Faculdade de Engenharia da Universidade do Porto) as part of the course Eletronic Systems.
+This is a faculty project for the fall semester of year 2018/2019 done at FEUP (Faculdade de Engenharia da Universidade do Porto) as part of the course Eletronic Systems/Sistemas Electronicos (SELE).
 
 Authors are Joel Vaz and Mario Kodba.
 
