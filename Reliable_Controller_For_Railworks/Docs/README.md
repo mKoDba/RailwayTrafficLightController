@@ -1,20 +1,22 @@
-# RailworkController
-Railwork Project traffic light controller 
+# Railway Traffic Light Controller
+Railway Traffic Light Controller Project
 
-This is a currcular project for the year 2018/2019 done at feup in the course of Eletronic Systems.
+This is a faculty project for the year 2018/2019 done at FEUP (Faculdade de Engenharia da Universidade do Porto) as part of the course Eletronic Systems.
 
-Authors are Joel Vaz and Mario Kodba
+Authors are Joel Vaz and Mario Kodba.
 
-Description:
+Goals of the project are:
 
--Make a Robust railwork traffic light control system based on a microcontroller ATMEGA328p
+- design a robust railway traffic light control system, which controls one green and one red light, based on a microcontroller ATMEGA328p
 
--Have two types of communication protocols synchronous and asynchronous
+- use two types of communication protocols (synchronous and asynchronous)
 
--Follow a testeability methodology and coding guidelines (For example philips healthcare)
+- use memory testing algorithms
 
--Microcontroller must have a test mode implemented
+- follow and stick to particular coding guideline (for example MISRA C)
 
--Design and implement the laboratorial prototype using LEDS, sensors and microcontroller
+- use professional development methodology: project management, proper debugging techniques, use of version control
 
--Design the PCB industrial prototype using EAGLE CAD
+- design and implement the laboratorial prototype using LEDS, sensors and microcontroller
+
+- design electrical scheme and PCB industrial prototype using EAGLE CAD
