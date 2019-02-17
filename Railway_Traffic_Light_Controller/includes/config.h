@@ -18,8 +18,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#define DEBUG		/* defined for debugging purposes */
-#define EXT_MEM 0xA0	/* address of external memory has to be set here */
+#define DEBUG				/* defined for debugging purposes */
+#define EXT_MEM 0xA0		/* address of external memory has to be set here */
+#define MEM_CAP 0xFF		/* maximum capacity of external eeprom memory */
 #define WRITE 0
 #define READ 1
 
@@ -30,8 +31,3 @@
 #ifndef BAUD
 #define BAUD 9600
 #endif
-
-#define MEM_CAP 0xFF
-#define EXT_MEM 0xA0
-#define WRITE 0
-#define READ 1
