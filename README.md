@@ -20,3 +20,8 @@ Goals of the project are:
 - design and implement the laboratorial prototype using LEDS, sensors and microcontroller
 
 - design electrical scheme and PCB industrial prototype using EAGLE CAD
+
+TODO:
+* finish memory testing
+* add i2c timeout if not detected
+* add watchdog
